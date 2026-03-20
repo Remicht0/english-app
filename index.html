@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Echo — Interactive English Learning Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-a"></div>
+    <div class="ambient ambient-b"></div>
+
+    <main class="app-layout">
+      <section class="overview-panel glass-card">
+        <p class="eyebrow">Echo · interactive prototype</p>
+        <h1>Learn English through rhythm, identity, and short focused wins.</h1>
+        <p class="lede">
+          This version is now a runnable prototype, not just a static case study: you can switch
+          screens, open lessons, answer exercises, gain XP, unlock rewards, and see the profile
+          adapt in real time.
+        </p>
+
+        <div class="overview-grid">
+          <article class="info-card glass-subcard">
+            <span class="label">Core loop</span>
+            <h2>Mission → Session → Insight → Progress</h2>
+            <p>Every interaction updates a calm but motivating learner identity.</p>
+          </article>
+          <article class="info-card glass-subcard">
+            <span class="label">Adaptive profile</span>
+            <h2>8 live signals</h2>
+            <p>Vocabulary, Listening, Speaking, Grammar, Confidence, Consistency, Retention, Reactivity.</p>
+          </article>
+          <article class="info-card glass-subcard">
+            <span class="label">Tone</span>
+            <h2>Premium, quiet, human</h2>
+            <p>No childish visuals, no SaaS dashboard feel, no aggressive gamification.</p>
+          </article>
+        </div>
+
+        <div class="insight-banner">
+          <span class="label">Live insight</span>
+          <p id="globalInsight">You are improving in Listening because you answer audio prompts with less hesitation.</p>
+        </div>
+      </section>
+
+      <section class="device-shell">
+        <div class="phone-frame">
+          <header class="phone-topbar">
+            <span>9:41</span>
+            <span>Echo</span>
+            <span id="statusLevel">Lvl 12</span>
+          </header>
+
+          <section id="screen-home" class="screen active">
+            <div class="welcome-card glass-card">
+              <p class="label">Good evening, Maya</p>
+              <h2>Keep your 18-day rhythm alive.</h2>
+              <div class="stats-row compact">
+                <div>
+                  <span class="small-label">Day streak</span>
+                  <strong id="dayStreak">18</strong>
+                </div>
+                <div>
+                  <span class="small-label">Win streak</span>
+                  <strong id="winStreak">7</strong>
+                </div>
+                <div>
+                  <span class="small-label">XP</span>
+                  <strong id="xpValue">1240</strong>
+                </div>
+              </div>
+              <div class="xp-track"><span id="xpBar" style="width: 62%"></span></div>
+            </div>
+
+            <div class="mission-card accent-cyan">
+              <div class="mission-head">
+                <div>
+                  <p class="label">Daily mission</p>
+                  <h3 id="missionTitle">Finish 3 micro-lessons</h3>
+                </div>
+                <span class="pill">+120 XP</span>
+              </div>
+              <p id="missionText">Vocabulary recall · listening choice · one low-pressure speaking prompt.</p>
+              <div class="checklist" id="missionChecklist">
+                <button class="task-chip" data-task="vocab">Vocabulary</button>
+                <button class="task-chip" data-task="listening">Listening</button>
+                <button class="task-chip" data-task="speaking">Speaking</button>
+              </div>
+              <button class="primary-button" id="startSessionButton">Continue learning</button>
+            </div>
+
+            <div class="dual-panels">
+              <article class="glass-card mini-card">
+                <span class="label">Current chapter</span>
+                <h3 id="currentChapterName">City Voices</h3>
+                <div class="xp-track small"><span id="chapterBar" style="width: 68%"></span></div>
+                <p id="chapterSummary">7 lesson nodes · 1 review gate · final dialogue challenge.</p>
+              </article>
+              <article class="glass-card mini-card">
+                <span class="label">Profile insight</span>
+                <h3 id="homeInsight">You sound more confident after listening tasks.</h3>
+                <p>Echo is shifting tomorrow’s plan toward guided speaking prompts.</p>
+              </article>
+            </div>
+          </section>
+
+          <section id="screen-campaign" class="screen">
+            <div class="section-copy">
+              <p class="label">Campaign map</p>
+              <h2>Everyday Momentum</h2>
+              <p>Unlock gentle chapter progression through short sessions and review gates.</p>
+            </div>
+
+            <div class="campaign-map" id="campaignMap">
+              <button class="chapter-node completed" data-chapter="Warm-Up">01<span>Warm-Up</span></button>
+              <button class="chapter-node completed offset" data-chapter="Routines">02<span>Routines</span></button>
+              <button class="chapter-node current" data-chapter="City Voices">03<span>City Voices</span></button>
+              <button class="chapter-node locked offset" data-chapter="Final Challenge">04<span>Final Challenge</span></button>
+            </div>
+
+            <article class="glass-card chapter-detail">
+              <div class="mission-head">
+                <div>
+                  <p class="label">Selected chapter</p>
+                  <h3 id="campaignChapterTitle">City Voices</h3>
+                </div>
+                <span class="pill muted-pill" id="campaignReward">Voice badge</span>
+              </div>
+              <p id="campaignDescription">Blend listening, sentence building, and speaking around urban daily-life situations.</p>
+              <button class="secondary-button" id="openChapterButton">Open this chapter</button>
+            </article>
+          </section>
+
+          <section id="screen-session" class="screen">
+            <div class="section-copy">
+              <p class="label" id="exerciseType">Listening choice</p>
+              <h2 id="exerciseQuestion">What did the speaker mean?</h2>
+              <div class="xp-track small"><span id="sessionProgress" style="width: 33%"></span></div>
+            </div>
+
+            <article class="prompt-panel glass-card">
+              <p class="quote" id="exercisePrompt">“I’m running a bit late, but I’ll be there in ten minutes.”</p>
+              <p id="exerciseSupport">Tap the answer that captures the intention.</p>
+            </article>
+
+            <div class="answers" id="answerButtons">
+              <button class="answer-button" data-correct="false">They have arrived already.</button>
+              <button class="answer-button" data-correct="true">They will arrive soon.</button>
+              <button class="answer-button" data-correct="false">They want to cancel.</button>
+            </div>
+
+            <article class="feedback-panel glass-card" id="feedbackPanel">
+              <span class="label">Elegant feedback</span>
+              <h3 id="feedbackTitle">Ready when you are.</h3>
+              <p id="feedbackText">Choose an answer to see how Echo interprets your performance.</p>
+            </article>
+
+            <div class="session-actions">
+              <button class="secondary-button" id="nextExerciseButton">Next exercise</button>
+            </div>
+          </section>
+
+          <section id="screen-stats" class="screen">
+            <div class="section-copy">
+              <p class="label">Weekly evolution</p>
+              <h2>Beautiful, readable learning analytics.</h2>
+              <p>Progress is shown as momentum and behavior, not only correct answers.</p>
+            </div>
+
+            <div class="metric-grid">
+              <article class="glass-card metric-card"><span class="small-label">Accuracy</span><strong id="accuracyValue">87%</strong><p>Steady upward trend</p></article>
+              <article class="glass-card metric-card"><span class="small-label">Response speed</span><strong id="speedValue">1.8s</strong><p>Faster on vocabulary</p></article>
+              <article class="glass-card metric-card"><span class="small-label">Retention</span><strong id="retentionValue">79%</strong><p>Review timing is working</p></article>
+              <article class="glass-card metric-card"><span class="small-label">Consistency</span><strong id="consistencyValue">91%</strong><p>6 sessions this week</p></article>
+            </div>
+
+            <article class="glass-card chart-card">
+              <div class="chart-grid"></div>
+              <div class="chart-fill chart-fill-a"></div>
+              <div class="chart-fill chart-fill-b"></div>
+              <div class="chart-labels">
+                <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+              </div>
+            </article>
+
+            <article class="glass-card pattern-card">
+              <span class="label">Recurring pattern</span>
+              <h3 id="statsPatternTitle">Prepositions in motion phrases</h3>
+              <p id="statsPatternText">Echo recommends two short reviews and one speaking prompt tomorrow.</p>
+            </article>
+          </section>
+
+          <section id="screen-profile" class="screen">
+            <div class="profile-head">
+              <div>
+                <p class="label">Learning archetype</p>
+                <h2 id="archetypeName">The Listener</h2>
+              </div>
+              <span class="pill">Moonlit rank</span>
+            </div>
+
+            <article class="glass-card radar-panel">
+              <div class="radar-chart">
+                <div class="radar-ring ring-outer"></div>
+                <div class="radar-ring ring-middle"></div>
+                <div class="radar-ring ring-inner"></div>
+                <div class="radar-line line-a"></div>
+                <div class="radar-line line-b"></div>
+                <div class="radar-line line-c"></div>
+                <div class="radar-line line-d"></div>
+                <div class="radar-shape" id="radarShape"></div>
+                <div class="radar-center"></div>
+                <span class="radar-label top">Vocabulary</span>
+                <span class="radar-label upper-right">Listening</span>
+                <span class="radar-label right">Speaking</span>
+                <span class="radar-label lower-right">Grammar</span>
+                <span class="radar-label bottom">Confidence</span>
+                <span class="radar-label lower-left">Consistency</span>
+                <span class="radar-label left">Retention</span>
+                <span class="radar-label upper-left">Reactivity</span>
+              </div>
+            </article>
+
+            <div class="dual-panels profile-notes">
+              <article class="glass-card mini-card">
+                <span class="label">Strength</span>
+                <h3 id="strengthTitle">Listening clarity</h3>
+                <p id="strengthText">You process natural dialogue quickly and retain nuance well.</p>
+              </article>
+              <article class="glass-card mini-card">
+                <span class="label">Growth edge</span>
+                <h3 id="growthTitle">Speaking confidence</h3>
+                <p id="growthText">Short voice prompts after listening tasks can increase comfort by 9%.</p>
+              </article>
+            </div>
+          </section>
+
+          <section id="screen-rewards" class="screen">
+            <div class="section-copy">
+              <p class="label">Rewards</p>
+              <h2>Refined motivation, never noisy pressure.</h2>
+            </div>
+
+            <div class="reward-list" id="rewardList">
+              <article class="glass-card reward-card unlocked">
+                <span class="reward-icon">✦</span>
+                <div>
+                  <h3>Voice Badge</h3>
+                  <p>Unlocked by finishing the City Voices chapter.</p>
+                </div>
+              </article>
+              <article class="glass-card reward-card unlocked">
+                <span class="reward-icon">☾</span>
+                <div>
+                  <h3>Moonlit Theme</h3>
+                  <p>Granted for a 14-day streak and steady weekly rhythm.</p>
+                </div>
+              </article>
+              <article class="glass-card reward-card" id="nextRewardCard">
+                <span class="reward-icon">◎</span>
+                <div>
+                  <h3>Speaking Bloom</h3>
+                  <p id="nextRewardText">Complete one more speaking confidence win to unlock this title.</p>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <nav class="bottom-nav">
+            <button class="nav-item active" data-target="home">Home</button>
+            <button class="nav-item" data-target="campaign">Campaign</button>
+            <button class="nav-item" data-target="session">Session</button>
+            <button class="nav-item" data-target="stats">Stats</button>
+            <button class="nav-item" data-target="profile">Profile</button>
+            <button class="nav-item" data-target="rewards">Rewards</button>
+          </nav>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
