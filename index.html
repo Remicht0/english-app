@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Echo — Premium Learning App Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-orb orb-a"></div>
+    <div class="background-orb orb-b"></div>
+    <div class="background-orb orb-c"></div>
+
+    <main class="app-stage">
+      <aside class="desktop-rail glass-panel">
+        <div class="rail-block">
+          <p class="eyebrow">Echo</p>
+          <h1>Premium English practice that feels alive, calm, and deeply personal.</h1>
+          <p>
+            This prototype now behaves like a real mobile app: levels unlock, sessions progress,
+            rewards can be claimed, profile signals evolve, and every primary button is wired.
+          </p>
+        </div>
+
+        <div class="rail-card soft-panel">
+          <span class="mini-label">Live pulse</span>
+          <strong id="railPulseTitle">Listening is leading your progress.</strong>
+          <p id="railPulseText">Short dialogue exercises are increasing both retention and confidence.</p>
+        </div>
+
+        <div class="rail-stats">
+          <article class="soft-panel">
+            <span class="mini-label">Today</span>
+            <strong id="railSessions">3 sessions</strong>
+            <p>Focused, short, and consistent.</p>
+          </article>
+          <article class="soft-panel">
+            <span class="mini-label">Adaptive plan</span>
+            <strong id="railPlan">Listening + Speaking</strong>
+            <p>Echo is balancing confidence with comprehension.</p>
+          </article>
+        </div>
+      </aside>
+
+      <section class="phone-shell">
+        <header class="phone-statusbar">
+          <span>9:41</span>
+          <span>Echo</span>
+          <span id="topLevelText">Lvl 12</span>
+        </header>
+
+        <section class="phone-content">
+          <div id="toast" class="toast hidden"></div>
+
+          <section id="home-screen" class="app-screen active"></section>
+          <section id="campaign-screen" class="app-screen"></section>
+          <section id="session-screen" class="app-screen"></section>
+          <section id="stats-screen" class="app-screen"></section>
+          <section id="profile-screen" class="app-screen"></section>
+          <section id="rewards-screen" class="app-screen"></section>
+        </section>
+
+        <nav class="bottom-nav">
+          <button class="nav-btn active" data-screen="home">Home</button>
+          <button class="nav-btn" data-screen="campaign">Campaign</button>
+          <button class="nav-btn" data-screen="session">Session</button>
+          <button class="nav-btn" data-screen="stats">Stats</button>
+          <button class="nav-btn" data-screen="profile">Profile</button>
+          <button class="nav-btn" data-screen="rewards">Rewards</button>
+        </nav>
+
+        <div id="onboardingModal" class="onboarding-modal hidden">
+          <div class="onboarding-card glass-panel">
+            <span class="mini-label" id="onboardingStepLabel">Step 1 of 3</span>
+            <h2 id="onboardingTitle">Welcome to Echo.</h2>
+            <p id="onboardingText">
+              Learn English through calm micro-sessions, adaptive support, and a profile that grows with you.
+            </p>
+            <div class="onboarding-tags" id="onboardingTags"></div>
+            <div class="onboarding-actions">
+              <button class="ghost-btn" id="skipOnboardingButton">Skip</button>
+              <button class="primary-btn" id="nextOnboardingButton">Next</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
