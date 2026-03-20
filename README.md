@@ -1,30 +1,35 @@
-# Echo Interactive Prototype
+# Echo Premium App Prototype
 
-Echo is now a **runnable interactive prototype** for a premium English learning mobile app concept.
+Echo is now a richer **interactive mobile app prototype** rather than a static concept page.
 
-## What is included
+## Included files
 
-- `index.html` — the app shell and all main screens.
-- `styles.css` — the dark organic premium visual system.
-- `script.js` — interaction logic for navigation, exercises, XP, rewards, and adaptive profile updates.
+- `index.html` — app shell, mobile screens, navigation, onboarding modal, and screen containers.
+- `styles.css` — premium dark organic visual system styled to feel like a polished mobile product.
+- `script.js` — state management, level progression, exercises, rewards, onboarding, stats, and profile updates.
 
 ## Run locally
 
-You can open `index.html` directly in a browser, or serve the folder locally:
+Open `index.html` in a browser, or serve the repo locally:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then open:
+Then visit:
 
 - `http://127.0.0.1:8000`
 
-## What changed vs the previous version
+## What works now
 
-The previous delivery was mainly a static visual presentation. This version behaves like an actual prototype:
+- all bottom navigation buttons switch screens
+- onboarding is interactive
+- every campaign level button is wired
+- locked levels show feedback and unlocked levels open playable sessions
+- each lesson answer updates state, XP, profile skills, streak-related progression, and mission status
+- rewards can be claimed once unlocked
+- profile and stats react to user progress
 
-- bottom navigation switches between screens
-- campaign nodes are clickable
-- session answers produce feedback
-- XP, streak, metrics, rewards, and profile insights update live
+## Reset the prototype
+
+Press `Alt + R` in the browser to reset the prototype state stored in `localStorage`.
